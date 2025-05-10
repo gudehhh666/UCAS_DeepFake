@@ -118,7 +118,7 @@
    
    ```
 
-6.  `test1` result saved in [`detection/result/test1/prediction.txt`](https://github.com/gudehhh666/UCAS_DeepFake/blob/main/detection/result/test1/prediction.txt)
+6.  **`test1` result saved in [`detection/result/test1/prediction.txt`](https://github.com/gudehhh666/UCAS_DeepFake/blob/main/detection/result/test1/prediction.txt)**
 
 
 
@@ -220,7 +220,7 @@ For each input folder, a single processed image is saved to:
 ```
 output/{folder_name}.png
 ```
-
+**Our Submission Output Can download from (HERE)[https://pan.baidu.com/s/1xfxucMeYN4_lspewNwn3xA?pwd=3n3j]**
 
 🧠 Models Used
 
