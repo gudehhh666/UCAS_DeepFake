@@ -221,6 +221,7 @@ For each input folder, a single processed image is saved to:
 output/{folder_name}.png
 ```
 
+
 🧠 Models Used
 
 - **Face Swapper**: `inswapper_128`
