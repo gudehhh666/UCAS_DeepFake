@@ -118,7 +118,7 @@
    
    ```
 
-6.  `test1` result saved in detection/
+6.  `test1` result saved in [`detection/result/test1/prediction.txt`](https://github.com/gudehhh666/UCAS_DeepFake/blob/main/detection/result/test1/prediction.txt)
 
 
 
