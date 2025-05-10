@@ -31,7 +31,8 @@ ENV/
 *.bin
 
 # Generated output files
-generation/output_frames/
+generation/output_frames/*
+!generation/output_frames/.gitkeep
 *.png
 *.jpg
 *.jpeg
