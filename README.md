@@ -115,7 +115,12 @@
    5.png,0.625488,1
    6.png,0.714355,1
    7.png,0.614258,1
+   
    ```
+
+6.  `test1` result saved in detection/
+
+
 
 ---
 
