@@ -220,7 +220,7 @@ For each input folder, a single processed image is saved to:
 ```
 output/{folder_name}.png
 ```
-**Our Submission Output Can download from [HERE]https://pan.baidu.com/s/1xfxucMeYN4_lspewNwn3xA?pwd=3n3j)**
+**Our Submission Output Can download from [HERE](https://pan.baidu.com/s/1xfxucMeYN4_lspewNwn3xA?pwd=3n3j)**
 
 🧠 Models Used
 
