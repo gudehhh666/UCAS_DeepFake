@@ -105,20 +105,9 @@
    bash prediction.sh
    ```
 
-   After prediction, you can get a txt with prediction label and log_prob like:
-   ```txt
-   0.png,0.622559,1
-   1.png,0.597168,1
-   2.png,0.635254,1
-   3.png,0.636230,1
-   4.png,0.631348,1
-   5.png,0.625488,1
-   6.png,0.714355,1
-   7.png,0.614258,1
+   After prediction, you can get a xlsx with image name and log_prob.
    
-   ```
-
-6.  **`test1` result saved in [`detection/result/test1/prediction.txt`](https://github.com/gudehhh666/UCAS_DeepFake/blob/main/detection/result/test1/prediction.txt)**
+6.  **`test1` result saved in [`detection/result/test1/Donot_Push_Us.xlsx`](https://github.com/gudehhh666/UCAS_DeepFake/blob/main/detection/result/test1/Donot_Push_Us.xlsx)**
 
 
 
@@ -220,7 +209,15 @@ For each input folder, a single processed image is saved to:
 ```
 output/{folder_name}.png
 ```
-**Our Submission Output Can download from [HERE](https://pan.baidu.com/s/1xfxucMeYN4_lspewNwn3xA?pwd=3n3j)**
+**Our Submission Output Can download from**
+
+```txt
+通过网盘分享的文件：Donot_Push_US.tar.gz
+链接: https://pan.baidu.com/s/1Zl9lC1BdIo7O-13TfQEHSA 提取码: y319 
+--来自百度网盘超级会员v5的分享
+```
+
+
 
 🧠 Models Used
 

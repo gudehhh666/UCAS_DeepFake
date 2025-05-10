@@ -16,11 +16,8 @@ import models_vit
 from PIL import Image
 import torch.nn.functional as F
 from tqdm import tqdm
-cross_dataset_test_path = {
-    'val': "/home/custom/data/test1/processed",
-}
-
-
+import pandas as pd
+import time
 
 class CustomDataset:
     def __init__(self, data_path, label_file, is_train, args):
@@ -89,19 +86,23 @@ def test_dataset(data_loader, model, device):
     model.eval()
 
     
-    results = []
+    output_all = []
+    img_names_all = []
+    start_time = time.time()
     with torch.no_grad():
         for batch in tqdm(data_loader, desc="Testing"):
             images, img_names = batch
             images = images.to(device, non_blocking=True)
             with torch.cuda.amp.autocast():
                 output = model(images).to(device, non_blocking=True)
-            preds = F.softmax(output, dim=1)[:, 1].detach().cpu().numpy()
-            y_preds = np.argmax(output.detach().cpu().numpy(), axis=1)
+                output = output.tolist()
+            
             img_names = list(img_names) if not isinstance(img_names, list) else img_names
-            for name, score, y_pred in zip(img_names, preds, y_preds):
-                results.append((name, float(score), int(y_pred)))
-    return results
+            img_names_all.extend(img_names)
+            output_all.extend(output)
+    end_time = time.time()
+    print(f"Inference time: {end_time - start_time} seconds")
+    return output_all, img_names_all, end_time - start_time
 
 def get_args_parser():
     parser = argparse.ArgumentParser('FSFM-3C simple evaluation', add_help=False)
@@ -146,6 +147,7 @@ def get_args_parser():
                         help='images input size')
     parser.add_argument('--data_path', default='/home/custom/data/test1/processed', type=str,
                         help='data path')
+    parser.add_argument('--result_path', default='/home/custom/data/test1', type=str, help='File to save results')
     return parser
 
 def main(args):
@@ -166,15 +168,37 @@ def main(args):
         drop_last=False
     )
     print(f"Testing dataset {args.data_path}, total {len(dataset_test)} images...")
-    # 测试集无标签
-    results = test_dataset(data_loader_test, model, device)
-    # 保存为txt
     
-    out_file = os.path.join(os.path.dirname(args.data_path), 'prediction.txt')
-    with open(out_file, 'w') as f:
-        for name, score, y_pred in results:
-            f.write(f"{name},{score:.6f},{y_pred}\n")
-    print(f"Prediction results for {args.data_path} have been saved to {out_file}")
+    output, img_names, inference_time = test_dataset(data_loader_test, model, device)
+
+
+    result_path = args.result_path
+    os.makedirs(result_path, exist_ok=True)
+
+    # 构建results字典
+    results = {
+        "predictions": dict(zip(img_names, output)),
+        "time": inference_time
+    }
+
+    # 保存为Excel
+    writer = pd.ExcelWriter(os.path.join(result_path, "Donot_Push_Us.xlsx"))
+    prediction_frame = pd.DataFrame(
+        data={
+            "img_names": list(results["predictions"].keys()),
+            "predictions": list(results["predictions"].values()),
+        }
+    )
+    time_frame = pd.DataFrame(
+        data={
+            "Data Volume": [len(results["predictions"])],
+            "Time": [results["time"]],
+        }
+    )
+    prediction_frame.to_excel(writer, sheet_name="predictions", index=False)
+    time_frame.to_excel(writer, sheet_name="time", index=False)
+    writer.close()
+    print(f"Prediction results for {args.data_path} have been saved to {os.path.join(result_path, 'predictions.xlsx')}")
     del dataset_test, data_loader_test
 
 if __name__ == '__main__':
