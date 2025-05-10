@@ -37,9 +37,13 @@
   * For generation, you can refer to the [FaceFusion Installation Instructions](https://docs.facefusion.io/installation)
 
 * Code Base References
+
   * [FSFM: A Generalizable Face Security Foundation Model via Self-Supervised Facial Representation Learning](https://github.com/wolo-wolo/FSFM.git)
+
   * [DFGC_startkit](https://github.com/bomb2peng/DFGC_starterkit.git)
+
   * [FaceFusion](https://github.com/facefusion/facefusion.git)
+
     We sincerey appreciate the outstanding contribution of the aforementioned  works.
 
 ---
